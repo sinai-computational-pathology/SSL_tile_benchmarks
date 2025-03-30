@@ -1,0 +1,15 @@
+# Automated External Benchmarking
+
+## Container
+
+Docker or Singularity containers are acceptable. Our code will run on the local cluster using Singularity. The official [nvidia-pytorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch) or [MONAI](https://hub.docker.com/r/projectmonai/monai/tags) containers are a good place to start. The container should also come with the model weights.
+
+## `inference.py` Script
+
+This script should run within the container provided by the user.
+The script should accept two arguments:
+- `input` path to input csv file which lists the slides to encode. The input csv files should contain two columns: `slide` a unique slide id which will also be used to name the tensors; `slide_path` the path to the slide file.
+- `output`: path to output directory.
+For each slide in the input csv, a `.pth` binary tensor file should be generated in the `output` directory.
+We provide an [example script](https://github.com/fuchs-lab-public/OPAL/blob/main/SSL_benchmarks/automated_external_benchmarking/inference.py) which the users can modify to their needs.
+
